@@ -1,0 +1,37 @@
+https://hackmd.io/@313510145/2025_Spring_OOP_FP
+
+* input: Verilog netlist(.v)
+* output: pattern file(.pat)
+
+* values: 0 , 1 , X(unknown)
+* gates(at most "2" inputs):
+   1. and
+   2. or
+   3. nand
+   4. nor
+   5. xor
+   6. xnor (?
+   7. buf (?
+   8. not
+
+* Flowchart:
+  ==>read netlist(.v)
+   -> topological? sort
+   -> parse pattern file(.pat)
+  ==> set input values
+   -> write to output file
+   -> repeat...
+
+* Evaluation:
+  1. read input
+  2. simulation
+  3. OOP design (繼承、多型???????????)
+     -> pure virtual function
+     -> subclass
+     -> dynamic dispatch
+     -> virtual destructors
+
+* BONUS:
+  1. detect combinationl loops
+  2. multi-driver nets
+  3. reduce gate counts(eg: dff(D Flip Flop) modules)

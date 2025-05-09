@@ -1,0 +1,5 @@
+1. Class Gate, Node
+2. logic
+3. read input
+4. write output
+5. reduce
