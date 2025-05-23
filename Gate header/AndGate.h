@@ -1,10 +1,12 @@
 #ifndef AND_GATE_H
 #define AND_GATE_H
-#include "Gate.h"
-class AndGate : public Gate{
+#include "Node.h"
+class AndGate : public Node{
 public:
-    AndGate():Gate(){}
-    AndGate(string theName, Node* LN, Node* RN):Gate(theName, "And", LN, RN){}
-    int evaluate(map<string,Gate*> allGate) override;
+    AndGate():Node(){}
+    AndGate(string theName):Node(theName){}
+    AndGate(string theName, Node* LN, Node* RN):Node(theName, "And", LN, RN){}
+    ~AndGate() override{ /* do nothing */};
+    int evaluate(map<string,Node*> allNode) override;
 };
 #endif

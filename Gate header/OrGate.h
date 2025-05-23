@@ -1,10 +1,12 @@
 #ifndef OR_GATE_H
 #define OR_GATE_H
-#include "Gate.h"
-class OrGate : public Gate{
+#include "Node.h"
+class OrGate : public Node{
 public:
-    OrGate():Gate(){}
-    OrGate(string theName, Node* LN, Node* RN):Gate(theName, "Or", LN, RN){}
-    int evaluate(map<string,Gate*> allGate) override;
+    OrGate():Node(){}
+    OrGate(string theName):Node(theName){}
+    OrGate(string theName, Node* LN, Node* RN):Node(theName, "Or", LN, RN){}
+    ~OrGate(){/* do nothing */}
+    int evaluate(map<string,Node*> allNode) override;
 };
 #endif

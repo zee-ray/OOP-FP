@@ -5,7 +5,7 @@
 #include <iostream>
 class Parser{
 public:
-    void ParseNetlist(ifstream& netlist_fin, vector<Node*>& allNode, vector<Node*>& OutputNode, map<string,Gate*>& allGate);
-    bool ParsePattern(ifstream& pat_fin, vector<Node*>& allNode);
+    void ParseNetlist(ifstream& netlist_fin, map<string,Node*>& InputNode, map<string,Node*>& OutputNode, map<string,Node*>& allNode);
+    // bool ParsePattern(ifstream& pat_fin, vector<Node*>& InputNode);
 };
 #endif

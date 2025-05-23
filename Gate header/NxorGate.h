@@ -1,10 +1,12 @@
 #ifndef NXOR_GATE_H
 #define NXOR_GATE_H
-#include "Gate.h"
-class NxorGate : public Gate{
+#include "Node.h"
+class NxorGate : public Node{
 public:
-    NxorGate():Gate(){}
-    NxorGate(string theName, Node* LN, Node* RN):Gate(theName, "Nxor", LN, RN){}
-    int evaluate(map<string,Gate*> allGate)override;
+    NxorGate():Node(){}
+    NxorGate(string theName):Node(theName){}
+    NxorGate(string theName, Node* LN, Node* RN):Node(theName, "Nxor", LN, RN){}
+    ~NxorGate(){/* do nothing*/}
+    int evaluate(map<string,Node*> allNode)override;
 };
 #endif

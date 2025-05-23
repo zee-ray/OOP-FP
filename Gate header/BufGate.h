@@ -1,10 +1,12 @@
 #ifndef BUF_GATE_H
 #define BUF_GATE_H
-#include "Gate.h"
-class BufGate : public Gate{
+#include "Node.h"
+class BufGate : public Node{
 public:
-    BufGate():Gate(){}
-    BufGate(string theName, Node* LN):Gate(theName, "Buf", LN, nullptr){}
-    int evaluate(map<string,Gate*> allGate)override;
+    BufGate():Node(){}
+    BufGate(string theName):Node(theName){}
+    BufGate(string theName, Node* LN):Node(theName, "Buf", LN, nullptr){}
+    ~BufGate(){/* do nothing */}
+    int evaluate(map<string,Node*> allNode)override;
 };
 #endif

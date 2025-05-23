@@ -1,10 +1,12 @@
 #ifndef NAND_GATE_H 
 #define NAND_GATE_H
-#include "Gate.h"
-class NandGate : public Gate{
+#include "Node.h"
+class NandGate : public Node{
 public:
-    NandGate():Gate(){}
-    NandGate(string theName, Node* LN, Node* RN):Gate(theName, "Nand", LN, RN){}
-    int evaluate(map<string,Gate*> allGate)override;
+    NandGate():Node(){}
+    NandGate(string theName):Node(theName){}
+    NandGate(string theName, Node* LN, Node* RN):Node(theName, "Nand", LN, RN){}
+    ~NandGate(){/* do nothing */}
+    int evaluate(map<string,Node*> allNode)override;
 };
 #endif

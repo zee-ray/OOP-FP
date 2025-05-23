@@ -1,10 +1,12 @@
 #ifndef XOR_GATE_H
 #define XOR_GATE_H
-#include "Gate.h"
-class XorGate : public Gate{
+#include "Node.h"
+class XorGate : public Node{
 public:
-    XorGate():Gate(){}
-    XorGate(string theName, Node* LN, Node* RN):Gate(theName, "Xor", LN, RN){}
-    int evaluate(map<string,Gate*> allGate)override;
+    XorGate():Node(){}
+    XorGate(string theName):Node(theName){}
+    XorGate(string theName, Node* LN, Node* RN):Node(theName, "Xor", LN, RN){}
+    ~XorGate(){/* do nothing */}
+    int evaluate(map<string,Node*> allNode)override;
 };
 #endif
