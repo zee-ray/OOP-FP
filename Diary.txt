@@ -1,0 +1,61 @@
+this folder is for testing small parts of the project
+# 0518
+    Title:
+        1. "Node" member function
+        2. "Gate" member function
+        3. "evaluate" function for every Gate
+    Files:
+        1. Gate header(folder)
+        2. Gate source(folder)
+        3. Node.cpp
+        4. Node.h
+    Problems:
+        1. multi def of truth tables (V)
+        2. forgot to write constructors for every Gate (V)
+        3. need to use pointer to achive poly, change map<string,Gate> -> map<string,Gate*> (V)
+        4. forgot to use call-by-reference(pointer) to update gate result,which made cashe fail (V)
+    Solved: 
+        1. write #ifndef
+        2. (solved)
+        3. (solved)
+        4. fix container by using Node pointer
+# 0519
+    Title:
+        1. fix 0518 Problems(4)
+        2. create a header file called "allGate.h" for fast #include
+        3. write class Parse for reading netlist
+        4. write class Parse for reading pattern
+        5. write a better testing program(node -> output -> gates -> value)
+    Files:
+        1. Parse(folder)
+    Problems:
+        1. change vector<Node*> into map<string,Node*> for easier access
+    Solved:
+        1.  
+# 0524
+    Title:
+        1. realize what topological sorting is, then change all evaluate function
+           from recursion to void which only set the value of the node
+        2. topological solved the problem of stack overflow, and help find circuit cycles
+        3. finish all I/O functions and the testing program is now better
+        4. wrtie a Makefile and test in server
+    Files:
+        1. pattern input(folder)
+        2. netlist input(folder)
+        3. testcode.cpp(test.cpp has been deleted)
+    Problems:
+        1. double delete when reading nodes that are in both InputNode and allNode
+        2. Parser looks ugly
+    Solved:
+        1. delete only one time is ok because the pointer is the same one
+        2.  
+
+# Date
+    Title:
+        1. 
+    Files:
+        1. 
+    Problems:
+        1. 
+    Solved:
+        1.  

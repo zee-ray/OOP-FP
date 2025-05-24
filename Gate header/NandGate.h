@@ -7,6 +7,6 @@ public:
     NandGate(string theName):Node(theName){}
     NandGate(string theName, Node* LN, Node* RN):Node(theName, "Nand", LN, RN){}
     ~NandGate(){/* do nothing */}
-    int evaluate(map<string,Node*> allNode)override;
+    void evaluate()override;
 };
 #endif

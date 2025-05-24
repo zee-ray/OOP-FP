@@ -6,6 +6,6 @@
 class Parser{
 public:
     void ParseNetlist(ifstream& netlist_fin, map<string,Node*>& InputNode, map<string,Node*>& OutputNode, map<string,Node*>& allNode);
-    // bool ParsePattern(ifstream& pat_fin, vector<Node*>& InputNode);
+    bool ParsePattern(ifstream& pattern_fin, map<string,Node*>& InputNode, const vector<string>& InputOrder);
 };
 #endif

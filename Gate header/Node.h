@@ -11,11 +11,15 @@ protected:
     string name;
     string type;
     Node *left, *right;
+    vector<Node*> out;
 public:
     Node():val(-1), name("no_name"), type(""), left(nullptr), right(nullptr){}
     Node(string theName):val(-1),name(theName),type(""),left(nullptr),right(nullptr){}
     Node(string theName, int theValue):val(theValue),name(theName),type(""),left(nullptr),right(nullptr){}
-    Node(string theName, string theType, Node* left, Node* right):val(-1),name(theName),type(theType),left(left),right(right){}
+    Node(string theName, string theType, Node* left, Node* right):val(-1),name(theName),type(theType),left(left),right(right){
+      if(left)  left->set_out(this);
+      if(right)  right->set_out(this);
+    }
     virtual ~Node(){/* do nothing */}
     void set_val(int theValue){val = theValue;}
     int get_val()const{return val;}
@@ -27,7 +31,9 @@ public:
     Node* get_left()const{return left;}
     void set_right(Node* rightnode){right = rightnode;}
     Node* get_right()const{return right;}
-    virtual int evaluate(map<string,Node*> allNode);
+    void set_out(Node* outnode){out.push_back(outnode);}
+    vector<Node*> get_out()const{return out;}
+    virtual void evaluate();
 };
 
 /* Truth Table */

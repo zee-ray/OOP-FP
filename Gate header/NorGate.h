@@ -7,6 +7,6 @@ public:
     NorGate(string theName):Node(theName){}
     NorGate(string theName, Node* LN, Node* RN):Node(theName, "Not", LN, RN){}
     ~NorGate()override{/* do nothing */}
-    int evaluate(map<string,Node*> allNode)override;
+    void evaluate()override;
 };
 #endif

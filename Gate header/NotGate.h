@@ -7,6 +7,6 @@ public:
     NotGate(string theName):Node(theName){}
     NotGate(string theName, Node* LN):Node(theName, "Not", LN, nullptr){}
     ~NotGate()override{/* do nothing */}
-    int evaluate(map<string,Node*> allNode)override;
+    void evaluate()override;
 };
 #endif

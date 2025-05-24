@@ -7,6 +7,6 @@ public:
     XorGate(string theName):Node(theName){}
     XorGate(string theName, Node* LN, Node* RN):Node(theName, "Xor", LN, RN){}
     ~XorGate(){/* do nothing */}
-    int evaluate(map<string,Node*> allNode)override;
+    void evaluate()override;
 };
 #endif

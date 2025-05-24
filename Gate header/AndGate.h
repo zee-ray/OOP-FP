@@ -7,6 +7,6 @@ public:
     AndGate(string theName):Node(theName){}
     AndGate(string theName, Node* LN, Node* RN):Node(theName, "And", LN, RN){}
     ~AndGate() override{ /* do nothing */};
-    int evaluate(map<string,Node*> allNode) override;
+    void evaluate() override;
 };
 #endif

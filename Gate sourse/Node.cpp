@@ -1,4 +1,4 @@
 #include "Node.h"
-int Node::evaluate(map<string,Node*> allNode){
-    return val;
+void Node::evaluate(){
+    /* do nothing */
 }

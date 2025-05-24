@@ -7,6 +7,6 @@ public:
     BufGate(string theName):Node(theName){}
     BufGate(string theName, Node* LN):Node(theName, "Buf", LN, nullptr){}
     ~BufGate(){/* do nothing */}
-    int evaluate(map<string,Node*> allNode)override;
+    void evaluate()override;
 };
 #endif

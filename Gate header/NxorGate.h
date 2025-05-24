@@ -7,6 +7,6 @@ public:
     NxorGate(string theName):Node(theName){}
     NxorGate(string theName, Node* LN, Node* RN):Node(theName, "Nxor", LN, RN){}
     ~NxorGate(){/* do nothing*/}
-    int evaluate(map<string,Node*> allNode)override;
+    void evaluate()override;
 };
 #endif

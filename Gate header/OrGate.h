@@ -7,6 +7,6 @@ public:
     OrGate(string theName):Node(theName){}
     OrGate(string theName, Node* LN, Node* RN):Node(theName, "Or", LN, RN){}
     ~OrGate(){/* do nothing */}
-    int evaluate(map<string,Node*> allNode) override;
+    void evaluate() override;
 };
 #endif
