@@ -40,16 +40,23 @@ this folder is for testing small parts of the project
         3. finish all I/O functions and the testing program is now better
         4. wrtie a Makefile and test in server
     Files:
-        1. pattern input(folder)
-        2. netlist input(folder)
+        1. Patterns(folder)
+        2. Netlists(folder)
         3. testcode.cpp(test.cpp has been deleted)
+        4. main.cpp(testcode.cpp has been deleted)
+        5. Makefile
     Problems:
         1. double delete when reading nodes that are in both InputNode and allNode
         2. Parser looks ugly
+        3. deleting old nodes can cause problem
+        4. constant become nullptr
+        5. print blocks
     Solved:
         1. delete only one time is ok because the pointer is the same one
-        2.  
-
+        2. ok fine
+        3. nodeUpdate function is added(in Parser), set_out when a constructor is called(in Node.h)
+        4. add 1b'1 and 1b'0 before ParseNetlist
+        5. (not deleted yet!!!) <--- remember
 # Date
     Title:
         1. 
