@@ -93,11 +93,11 @@ void Parser::ParseNetlist(ifstream& netlist_fin, map<string,Node*>& InputNode, m
         }
         string gate_type = match[1];
         string argv = match[2];
-        /* ====================here for test==================== */
+        /* ==================== checkpoint ==================== */
         /*
         cout<<"gate_type: "<<gate_type<<endl
             <<"argv: "<<argv<<endl;
-        /* ====================here for test==================== */
+        /* ==================== checkpoint ==================== */
         
         regex split("\\s*,\\s*");
         sregex_token_iterator it(argv.begin(), argv.end(), split, -1);
@@ -141,7 +141,7 @@ void Parser::ParseNetlist(ifstream& netlist_fin, map<string,Node*>& InputNode, m
         }else if(gate_type == "nxor"){
             the_gate = new NxorGate(gate_name, allNode[argvs[1]], allNode[argvs[2]]);
         }else{
-            cout<<"what is this gate???"<<endl
+            cout<<"Error: Unknown gate type!"<<endl
                 <<"->"<<gate_type<<endl;
             continue;
         }
@@ -149,7 +149,7 @@ void Parser::ParseNetlist(ifstream& netlist_fin, map<string,Node*>& InputNode, m
         nodeUpdate(gate_name, the_gate, allNode);
     }while(getline(netlist_fin,str));
 
-    /* ====================here for test==================== */
+    /* ==================== checkpoint ==================== */
     /*
     cout<<"All node check:"<<endl;
     for(auto& n : allNode){
@@ -166,7 +166,7 @@ void Parser::ParseNetlist(ifstream& netlist_fin, map<string,Node*>& InputNode, m
         }
         cout<< endl;
     }
-    /* ====================here for test==================== */
+    /* ==================== checkpoint ==================== */
     
     netlist_fin.close();
 }
@@ -192,6 +192,6 @@ bool Parser::ParsePattern(ifstream& pattern_fin, map<string,Node*>& InputNode, c
             return false;
         }
     }
-    cout<<"parsing pattern"<<endl;
+    // cout<<"parsing pattern"<<endl;
     return true;
 }

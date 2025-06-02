@@ -35,14 +35,14 @@ int main(int argc, char** argv){
     // 2. TopoSort
     vector<Node*> TopoOrder = TopoSort(allNode);
     
-    /* ====================here for test==================== */
+    /* ==================== checkpoint ==================== */
     /*
     cout<<"topo: ";
     for(auto n : TopoOrder){
         cout<<n->get_name()<<" ";
     }
     cout<<endl;
-    /* ====================here for test==================== */
+    /* ==================== checkpoint ==================== */
 
     // 3. Store the order of input
     vector<string> OrderOfInput;
@@ -87,11 +87,6 @@ vector<Node*> TopoSort(map<string,Node*>& allNode){
     int numofconst=0;
     // initialize to 0
     for (auto& node : allNode){
-        if(node.second == nullptr){
-          numofconst++;
-          cout<<"const found";
-          continue; // skip constant
-        }
         inDegree[node.second] = 0;
     }
     
@@ -129,7 +124,7 @@ vector<Node*> TopoSort(map<string,Node*>& allNode){
     }
     
     // cycle check
-    if(sorted_nodes.size() != allNode.size()-numofconst){
+    if(sorted_nodes.size() != allNode.size()){
         cout<<"Error: circuit contains a cycle!!!"<<endl;
     }
     return sorted_nodes;
