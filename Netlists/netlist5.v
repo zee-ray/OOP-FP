@@ -79,3 +79,5 @@ and  (R, w39, w12);
 xor  (S, w46, w1);
 
 endmodule
+
+// huge, 10 input, 4 output

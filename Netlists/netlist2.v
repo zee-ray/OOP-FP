@@ -11,3 +11,5 @@ module loop (A, B, C, P);
     and (w3, w1, w2);
     and (P, w1, w2);
 endmodule
+
+// loop, 3 input, 1 output

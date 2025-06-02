@@ -1,8 +1,9 @@
 #include "allGate.h"
 #include "Parser.h"
+#include <regex>
 #include <queue>
 vector<Node*> TopoSort(map<string,Node*>& allNode);
-void writeOutput(ofstream& output, const map<string,Node*>& OutputNode);
+void writeOutput(ofstream& output, map<string,Node*>& allNode, const vector<string>& OutputOrder);
 void deleteAllNode(map<string,Node*>& allNode);
 int main(int argc, char** argv){
     // 0. set all the files and containers
@@ -13,19 +14,19 @@ int main(int argc, char** argv){
 
     map<string,Node*> allNode;
     map<string,Node*> InputNode;
-    map<string,Node*> OutputNode;
+    vector<string> OutputOrder;
 
     // 1. Parse netlist
     // first add constant into allNode
     allNode["1'b0"] = new Node("1'b0", 0);
     allNode["1'b1"] = new Node("1'b1", 1);
-    parser.ParseNetlist(netlist_fin,InputNode,OutputNode,allNode);
+    parser.ParseNetlist(netlist_fin,InputNode,allNode, OutputOrder);
     
     // write the first line of output file
     output<<"output ";
-    for(auto it=OutputNode.begin(); it != OutputNode.end();){
-        output<<it->first;
-        if(++it != OutputNode.end()){
+    for(int i=0; i<OutputOrder.size();){
+        output<<OutputOrder[i];
+        if(++i != OutputOrder.size()){
             output<<", ";
         }else{
             output<<endl;
@@ -34,37 +35,43 @@ int main(int argc, char** argv){
     // 2. TopoSort
     vector<Node*> TopoOrder = TopoSort(allNode);
     
+    /* ====================here for test==================== */
     /*
     cout<<"topo: ";
     for(auto n : TopoOrder){
         cout<<n->get_name()<<" ";
     }
     cout<<endl;
-    */
+    /* ====================here for test==================== */
 
     // 3. Store the order of input
     vector<string> OrderOfInput;
-    string str;
-    pattern_fin>>str;  // ignore "input "
-    for(int i=0; i<InputNode.size()-1; i++){
-        pattern_fin>>str;
-        str = str.substr(0,str.length()-1);
-        OrderOfInput.push_back(str);
-    }
-    //read the last one
-    pattern_fin>>str;
-    OrderOfInput.push_back(str);
+    string line;
+    pattern_fin>>line;
+    getline(pattern_fin, line);
+    int start = line.find(" ");
+    string input_list = line.substr(start);
+    regex split("\\s*,\\s*");
+    sregex_token_iterator it(input_list.begin(), input_list.end(), split, -1);
+    sregex_token_iterator end;
 
+    while(it != end){
+        string nodeName = *it;
+        nodeName.erase(0, nodeName.find_first_not_of(" \t\r\n"));
+        nodeName.erase(nodeName.find_last_not_of(" \t\r\n") + 1);
+        OrderOfInput.push_back(nodeName);
+        it++;
+    }
+    
     // 4. Parse pattern & Set input wire values
     while(parser.ParsePattern(pattern_fin,InputNode,OrderOfInput)){
         // 5. Evaluate in TopoOrder
         for(int i=0; i<TopoOrder.size(); i++){
             TopoOrder[i]->evaluate();
         }
-
         // 6. Store output values
         // 7. write output file
-        writeOutput(output,OutputNode);
+        writeOutput(output,allNode,OutputOrder);
     }
     
     // finish writing output file
@@ -110,34 +117,35 @@ vector<Node*> TopoSort(map<string,Node*>& allNode){
     }
     
     // topological sort
-    while (!q.empty()){
+    while(!q.empty()){
         Node* current = q.front();
         q.pop();
         sorted_nodes.push_back(current);
-        for (Node* out : current->get_out()){
-            if (--inDegree[out] == 0) {
+        for(Node* out : current->get_out()){
+            if(--inDegree[out] == 0){
                 q.push(out);
             }
         }
     }
     
     // cycle check
-    if (sorted_nodes.size() != allNode.size()-numofconst){
+    if(sorted_nodes.size() != allNode.size()-numofconst){
         cout<<"Error: circuit contains a cycle!!!"<<endl;
     }
     return sorted_nodes;
 }
 
-void writeOutput(ofstream& output, const map<string,Node*>& OutputNode){
+void writeOutput(ofstream& output, map<string,Node*>& allNode, const vector<string>& OutputOrder){
     output<<"    ";
-    for(auto it=OutputNode.begin(); it != OutputNode.end();){
-        if(it->second->get_val() == 2){
+    for(int i=0; i<OutputOrder.size();){
+        string name = OutputOrder[i];
+        if(allNode[name]->get_val() == 2){
             output<<"X";
         }else{
-            output<<it->second->get_val();
+            output<<allNode[name]->get_val();
         }
         
-        if(++it != OutputNode.end()){
+        if(++i != OutputOrder.size()){
             output<<" ";
         }else{
             output<<endl;

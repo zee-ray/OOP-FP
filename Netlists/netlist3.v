@@ -19,3 +19,5 @@ module Larger (A, B, C, P, Q);
     nxor (w8, C, w7);
     not (Q, w8);
 endmodule
+
+// larger, 3 input, 2 output

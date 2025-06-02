@@ -56,7 +56,28 @@ this folder is for testing small parts of the project
         2. ok fine
         3. nodeUpdate function is added(in Parser), set_out when a constructor is called(in Node.h)
         4. add 1b'1 and 1b'0 before ParseNetlist
-        5. (not deleted yet!!!) <--- remember
+        5. (not deleted yet!!!) <--- remember <--- 後來想想應該是不能刪(0601)
+# 0601 (哦~痛苦)
+    Title:
+        1. 突然發現input format被改了，原本設計好的parser要重寫，他說會把node放在同一行宣告，甚至沒有空格，而且兩種都要讀的懂。
+        2. 助教回應參考regular expression，但我完全不會用<regex>這個library，所以叫ChatGPT生成一個版本，然後再修正。
+        3. 順帶一提，新增了一個vector<string>來紀錄output的順序，阿不就還好有問。
+        4. 為了Makefile方便寫，直接複製了之前lab的助教版本，所以把Parser這個folder刪掉了。所有.cpp都在src、.h在inc。
+        5. 寫好了五個自己的測資 - 完成測試
+            netlist1.v : example, 3 in, 2 out
+            netlist2.v : loop, 3 in, 1 out
+            netlist3.v : larger, 3 in, 2 out
+            netlist4.v : multi-driven at node 'C', 2 in, 2 out
+            netlist5.v : huge, 10 in, 4 out
+    Files:
+        1. Parser.cpp
+        2. Parser.h
+        3. main.cpp
+    Problems:
+        1. 不知道怎麼用<regex>
+        2. 
+    Solved:
+        1. 去學阿! 幹 
 # Date
     Title:
         1. 
